@@ -1,0 +1,915 @@
+/* ==========================================================================
+   1. REZET VA O'ZGARUVCHILAR (CSS Variables)
+   ========================================================================== */
+
+:root {
+    /* Issiq interyer palitrasi */
+    --color-primary: #8C533E;       /* Terrakota / Issiq jigarrang */
+    --color-primary-dark: #673B2B;  /* To'q jigarrang */
+    --color-secondary: #2C4235;    /* Zümrad yashil */
+    --color-bg-light: #F9F6F0;     /* Krem rangli fon */
+    --color-card-bg: #FFFFFF;      /* Oq rang */
+    --color-text-dark: #2B2421;    /* Asosiy matn */
+    --color-text-muted: #736B66;   /* Izohlar matni */
+    --color-accent: #D9825B;       /* Urg'u rangi */
+
+    /* Shriftlar */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    /* O'tishlar va soyalar */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 20px 40px rgba(140, 83, 62, 0.18);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* Kichik va rasmli ikonka stillari */
+.icon-sm {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    object-fit: contain;
+}
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Section Title */
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-title h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-text-dark);
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+}
+
+.section-title p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2rem;
+    border-radius: 30px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(140, 83, 62, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(140, 83, 62, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    margin-left: 1rem;
+}
+
+.btn-secondary:hover {
+    background-color: #ffffff;
+    color: var(--color-text-dark);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   2. TOP BAR & NAVBAR
+   ========================================================================== */
+
+.top-bar {
+    background-color: var(--color-text-dark);
+    color: #A39B96;
+    font-size: 0.82rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-info span {
+    margin-right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.logo span {
+    color: var(--color-primary);
+}
+
+.menu-toggle, .burger-menu {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 500;
+    font-size: 0.92rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: var(--transition-smooth);
+}
+
+/* Hover-line animatsiyasi */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   3. HERO SECTION (Zoom Animatsiyasi bilan)
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    animation: heroZoom 22s infinite alternate ease-in-out;
+}
+
+@keyframes heroZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(43, 36, 33, 0.8) 0%, rgba(43, 36, 33, 0.35) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    max-width: 650px;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-subtitle {
+    display: inline-block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: rgba(217, 130, 91, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--color-accent);
+    margin-bottom: 1.2rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    color: #E2DDD9;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   4. KATEGORIYALAR BO'LIMI
+   ========================================================================== */
+
+.categories {
+    padding: 6rem 0 3rem;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+}
+
+.category-card {
+    position: relative;
+    height: 280px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    color: #ffffff;
+    transition: var(--transition-smooth);
+}
+
+.category-overlay h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+.category-overlay p {
+    font-size: 0.85rem;
+    color: #D1C9C3;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   5. KATALOG BO'LIMI (Kartochkalar & Smooth Hover)
+   ========================================================================== */
+
+.catalog {
+    padding: 4rem 0 6rem;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.product-card {
+    background-color: var(--color-card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge.new {
+    background-color: var(--color-secondary);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.category-tag {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.product-name {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin: 0.4rem 0;
+    color: var(--color-text-dark);
+}
+
+.description {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F0ECE6;
+    padding-top: 1rem;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.card-btn {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.card-btn:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   6. PROMO BANNER (Chegirma Bo'limi)
+   ========================================================================== */
+
+.promo-banner {
+    position: relative;
+    padding: 6rem 0;
+    background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff;
+    text-align: center;
+}
+
+.promo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 66, 53, 0.85);
+}
+
+.promo-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.promo-tag {
+    background-color: var(--color-accent);
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.promo-banner h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    margin: 1.2rem 0 0.8rem;
+}
+
+.promo-banner p {
+    font-size: 1.1rem;
+    color: #D1E0D7;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   7. CHEKSIZ CSS KARUSEL (animation-play-state: paused)
+   ========================================================================== */
+
+.carousel-section {
+    padding: 6rem 0;
+    background-color: #F2ECE4;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    display: flex;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: scrollCarousel 28s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 6 - 1.5rem * 6));
+    }
+}
+
+.carousel-slide {
+    width: 320px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    flex-shrink: 0;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-slide:hover img {
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   8. AFZALLIKLAR (Rasmli ikonka stili bilan)
+   ========================================================================== */
+
+.features {
+    padding: 6rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: var(--color-card-bg);
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    background-color: var(--color-bg-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-img-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.feature-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+}
+
+.feature-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   9. STATISTIKA BO'LIMI
+   ========================================================================== */
+
+.stats-section {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 4rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #F0D3C9;
+}
+
+/* ==========================================================================
+   10. MIJOZLAR SHARHLARI
+   ========================================================================== */
+
+.testimonials {
+    padding: 6rem 0;
+    background-color: var(--color-secondary);
+    color: #ffffff;
+}
+
+.testimonials .section-title h2 {
+    color: #ffffff;
+}
+
+.testimonials .section-title p {
+    color: #A3B8AC;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    transition: var(--transition-smooth);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stars {
+    color: #F2C94C;
+    margin-bottom: 1rem;
+}
+.comment {
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: #E2DDD9;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+.user-info h4 {
+    font-size: 1rem;
+}
+
+.user-info span {
+    font-size: 0.8rem;
+    color: #A3B8AC;
+}
+
+/* ==========================================================================
+   11. FOOTER BO'LIMI
+   ========================================================================== */
+
+.footer {
+    background-color: #1E1815;
+    color: #A39B96;
+    padding: 5rem 0 2rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.footer-logo {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.social-img-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    background-color: var(--color-primary);
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+    color: #A39B96;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-column ul li a:hover {
+    color: var(--color-primary);
+    padding-left: 5px;
+}
+
+.contact-info li {
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   12. RESPONSIVLIK (MOBILE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .promo-banner h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        display: none; /* Mobil ekranda ustki panelni yashirish */
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .burger-menu span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--color-text-dark);
+        border-radius: 2px;
+        transition: var(--transition-smooth);
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.2rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+
+    .menu-toggle:checked ~ .nav-links {
+        max-height: 450px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 6rem 0;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
